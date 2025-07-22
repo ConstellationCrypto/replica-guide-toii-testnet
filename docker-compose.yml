@@ -18,7 +18,7 @@ services:
       - --rpc-port=9876
       - --celestia.keyname=${CELESTIA_KEYNAME}
       - --celestia.auth-token=${CELESTIA_LIGHT_NODE_AUTH_TOKEN}
-      - --celestia.namespace-id=ca1de12a12528b03789c
+      - --celestia.namespace-id=ca1de12ab15a42e5c69a
       - --celestia.rpc=${CELESTIA_LIGHT_NODE}
       - --celestia.validator-config.eth-rpc=${RPC_URL}
 
