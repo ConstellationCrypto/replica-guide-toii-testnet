@@ -4,6 +4,24 @@ volumes:
   l2_data:
 
 services:
+  celestia-das-server:
+    platform: linux/amd64
+    image: ghcr.io/celestiaorg/nitro-das-celestia:v0.4.0
+    ports:
+      - "9876:9876"
+    entrypoint:
+      - "bin/celestia-server"
+      - --log-level=5
+      - --metrics
+      - --enable-rpc=true
+      - --rpc-addr=0.0.0.0
+      - --rpc-port=9876
+      - --celestia.keyname=${CELESTIA_KEYNAME}
+      - --celestia.auth-token=${CELESTIA_LIGHT_NODE_AUTH_TOKEN}
+      - --celestia.namespace-id=ca1de12a12528b03789c
+      - --celestia.rpc=${CELESTIA_LIGHT_NODE}
+      - --celestia.validator-config.eth-rpc=${RPC_URL}
+
   l2:
     image: ghcr.io/celestiaorg/nitro:v3.5.2
     platform: linux/amd64
@@ -20,6 +38,6 @@ services:
       - --node.staker.strategy=Watchtower
       - --execution.forwarding-target=wss://toii-testnet.rpc.caldera.xyz/ws
       - --node.feed.input.url=wss://toii-testnet.rpc.caldera.xyz/feed
-      - --parent-chain.connection.url=
+      - --parent-chain.connection.url=[sepolia rpc url]
       
       
